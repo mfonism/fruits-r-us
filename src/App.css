@@ -1,0 +1,24 @@
+.App {
+    width: 100vw;
+    height: 100vh;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, auto) 1fr;
+    grid-template-rows: repeat(3, auto) 1fr;
+    column-gap: 0.25vmin;
+    row-gap: 0.25vmin;
+}
+
+.tile {
+    width: 20vmin;
+    height: 20vmin;
+    line-height: 20vmin;
+    font-size: 8vmin;
+    text-align: center;
+    cursor: pointer;
+
+    border: 1px solid #999;
+    overflow: hidden;
+}
