@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 import './App.css';
 
@@ -30,34 +31,42 @@ class Tile extends React.Component {
                      this.state.isFaceUp ? ' is-face-up' : ''}`
                 }
             >
-                {this.props.sharedID}
+                {this.props.sharedID}, {this.props.uniqueID}
             </div>
         )
     }
 }
 
 class Board extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+        /*
+        Compute id pairs in the form of [uniqueID, sharedID] for
+        child components (cells), such that:
+        + the uniqueIDs increase monotonically from 1 to 16,
+        + every two children have a common sharedID
+
+        ex.
+        [ [1,1], [2,1], [3,2], [4,2], [5,3], ...]
+        */
+        this.state.idPairs = _.zip(
+            _.range(1, 16+1),
+            _.range(1, 8+1 ).flatMap((i) => [i, i])
+        );
+    }
+
     render() {
         return (
             <div className="board">
-                <Tile uniqueID="1"  sharedID="1" />
-                <Tile uniqueID="2"  sharedID="2" />
-                <Tile uniqueID="3"  sharedID="3" />
-                <Tile uniqueID="4"  sharedID="4" />
-                <Tile uniqueID="5"  sharedID="5" />
-                <Tile uniqueID="6"  sharedID="6" />
-                <Tile uniqueID="7"  sharedID="7" />
-                <Tile uniqueID="8"  sharedID="8" />
-                <Tile uniqueID="9"  sharedID="1" />
-                <Tile uniqueID="10" sharedID="2" />
-                <Tile uniqueID="11" sharedID="3" />
-                <Tile uniqueID="12" sharedID="4" />
-                <Tile uniqueID="13" sharedID="5" />
-                <Tile uniqueID="14" sharedID="6" />
-                <Tile uniqueID="15" sharedID="7" />
-                <Tile uniqueID="16" sharedID="8" />
+                {this.state.idPairs.map((pair) =>
+                    <Tile
+                        uniqueID={pair[0]}
+                        sharedID={pair[1]}
+                    />
+                )}
             </div>
-        )
+        );
     }
 }
 
