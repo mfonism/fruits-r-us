@@ -11,6 +11,7 @@ class Tile extends React.Component {
             isMatched: false,
             isAwaiting: false,
         };
+        this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick() {
@@ -22,7 +23,7 @@ class Tile extends React.Component {
     render() {
         return (
             <div
-                onClick={() => this.handleClick()}
+                onClick={this.handleClick}
                 className={
                     `tile${
                      this.state.isMatched ? ' is-matched' : ''}${
