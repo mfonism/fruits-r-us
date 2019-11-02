@@ -21,4 +21,12 @@
 
     border: 1px solid #999;
     overflow: hidden;
+
+    color: rgba(255, 255, 255, 0.96);
+    background-color: rgb(27, 175, 146);
+}
+
+.tile.is-face-up {
+    color: rgb(27, 175, 146);
+    background-color: rgba(255, 255, 255, 0.96);
 }

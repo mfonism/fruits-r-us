@@ -4,12 +4,17 @@ import './App.css';
 
 
 class Tile extends React.Component {
-    state = {
-        isMatched: false,
-        isFaceUp: false,
+    constructor(props) {
+        super(props);
+        this.state = {
+            isMatched: false,
+            isFaceUp: false,
+            uid: props.uniqueID,
+            shid: props.sharedID,
+        };
     }
 
-    onClick(event) {
+    handleClick() {
         this.setState({
             isFaceUp: !this.state.isFaceUp
         });
@@ -17,11 +22,13 @@ class Tile extends React.Component {
 
     render() {
         return (
-            <div className={
-                `tile${
-                 this.state.isMatched ? ' is-matched' : ''}${
-                 this.state.isFaceUp ? ' is-face-up' : ''}`
-            }
+            <div
+                onClick={() => this.handleClick()}
+                className={
+                    `tile${
+                     this.state.isMatched ? ' is-matched' : ''}${
+                     this.state.isFaceUp ? ' is-face-up' : ''}`
+                }
             >
                 {this.props.sharedID}
             </div>
@@ -56,7 +63,7 @@ class Board extends React.Component {
 
 function App() {
     return (
-        <div class="App">
+        <div className="App">
             <Board />
         </div>
     );
