@@ -9,15 +9,13 @@ class Tile extends React.Component {
         super(props);
         this.state = {
             isMatched: false,
-            isFaceUp: false,
-            uid: props.uniqueID,
-            shid: props.sharedID,
+            isAwaiting: false,
         };
     }
 
     handleClick() {
         this.setState({
-            isFaceUp: !this.state.isFaceUp
+            isAwaiting: !this.state.isAwaiting
         });
     }
 
@@ -28,7 +26,7 @@ class Tile extends React.Component {
                 className={
                     `tile${
                      this.state.isMatched ? ' is-matched' : ''}${
-                     this.state.isFaceUp ? ' is-face-up' : ''}`
+                     this.state.isAwaiting ? ' is-awaiting' : ''}`
                 }
             >
                 {this.props.sharedID}<sub><small>{this.props.uniqueID}</small></sub>
