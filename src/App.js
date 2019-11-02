@@ -31,7 +31,7 @@ class Tile extends React.Component {
                      this.state.isFaceUp ? ' is-face-up' : ''}`
                 }
             >
-                {this.props.sharedID}, {this.props.uniqueID}
+                {this.props.sharedID}<sub><small>{this.props.uniqueID}</small></sub>
             </div>
         )
     }
@@ -50,9 +50,11 @@ class Board extends React.Component {
         ex.
         [ [1,1], [2,1], [3,2], [4,2], [5,3], ...]
         */
-        this.state.idPairs = _.zip(
-            _.range(1, 16+1),
-            _.range(1, 8+1 ).flatMap((i) => [i, i])
+        this.state.idPairs = _.shuffle(
+            _.zip(
+                _.range(1, 16+1),
+                _.range(1, 8+1 ).flatMap((i) => [i, i])
+            )
         );
     }
 
