@@ -1,6 +1,13 @@
 .App {
     width: 100vw;
     height: 100vh;
+
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
 }
 
 .board {
@@ -27,11 +34,11 @@
 }
 
 .tile.is-awaiting {
-    color: rgb(27, 175, 146);
-    background-color: rgba(255, 255, 255, 0.96);
+    color: rgba(255, 255, 255, 0.96);
+    background-color: khaki;
 }
 
 .tile.is-matched {
-    color: rgba(255, 255, 255, 0.96);
-    background-color: khaki;
+    color: rgb(27, 175, 146);
+    background-color: rgba(255, 255, 255, 0.96);
 }

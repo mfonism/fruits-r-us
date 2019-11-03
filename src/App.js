@@ -31,9 +31,9 @@ class Tile extends React.Component {
     }
 
     handleFeedback(feedback) {
-        if (feedback == "CLEAR") {
+        if (feedback === "CLEAR") {
             this.setState({isAwaiting: false});
-        } else if (feedback == "MATCH") {
+        } else if (feedback === "MATCH") {
             this.setState({
                 isAwaiting: false,
                 isMatched: true,
