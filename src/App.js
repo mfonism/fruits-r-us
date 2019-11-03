@@ -12,12 +12,33 @@ class Tile extends React.Component {
             isAwaiting: false,
         };
         this.handleClick = this.handleClick.bind(this);
+        this.bubbleClick = this.bubbleClick.bind(this);
+        this.handleFeedback = this.handleFeedback.bind(this);
     }
 
     handleClick() {
-        this.setState({
-            isAwaiting: !this.state.isAwaiting
-        });
+        if (this.state.isAwaiting || this.state.isMatched) {
+            return;
+        }
+        else {
+            this.setState({isAwaiting: true});
+            this.bubbleClick();
+        }
+    }
+
+    bubbleClick() {
+        this.props.onTileClick(this.props.uniqueID, this.props.sharedID, this.handleFeedback);
+    }
+
+    handleFeedback(feedback) {
+        if (feedback == "CLEAR") {
+            this.setState({isAwaiting: false});
+        } else if (feedback == "MATCH") {
+            this.setState({
+                isAwaiting: false,
+                isMatched: true,
+            })
+        }
     }
 
     render() {
@@ -39,7 +60,11 @@ class Tile extends React.Component {
 class Board extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            awaitingUniqueID: null,
+            awaitingSharedID: null,
+            matchedSharedIDs: [],
+        };
         /*
         Compute id pairs in the form of [uniqueID, sharedID] for
         child components (cells), such that:
@@ -55,6 +80,40 @@ class Board extends React.Component {
                 _.range(1, 8+1 ).flatMap((i) => [i, i])
             )
         );
+        this.handleTileClick = this.handleTileClick.bind(this);
+    }
+
+    handleTileClick(tileUniqueID, tileSharedID, sendFeedback) {
+        if (this.state.awaitingUniqueID === null) {
+            /* AWAIT */
+            this.setState({
+                awaitingUniqueID: tileUniqueID,
+                awaitingSharedID: tileSharedID,
+                awaitingfeedbackSender: sendFeedback,
+            });
+        } else if (this.state.awaitingSharedID !== tileSharedID) {
+            /* CLEAR */
+            let previousTileReset = this.state.awaitingfeedbackSender
+            this.setState({
+                awaitingUniqueID: null,
+                awaitingSharedID: null,
+                awaitingfeedbackSender: null,
+            });
+            previousTileReset("CLEAR");
+            sendFeedback("CLEAR");
+        } else {
+            /* MATCH */
+            let previousTileReset = this.state.awaitingfeedbackSender
+            this.setState({
+                awaitingUniqueID: null,
+                awaitingSharedID: null,
+                awaitingfeedbackSender: null,
+                matchedSharedIDs:
+                    this.state.matchedSharedIDs.concat(tileSharedID),
+            });
+            previousTileReset("MATCH");
+            sendFeedback("MATCH");
+        }
     }
 
     render() {
@@ -64,6 +123,9 @@ class Board extends React.Component {
                     <Tile
                         uniqueID={pair[0]}
                         sharedID={pair[1]}
+                        onTileClick={this.handleTileClick}
+                        // isAwaiting={this.state.awaitingUniqueID === pair[0]}
+                        // isMatched={pair[1] in this.state.matchedSharedIDs}
                     />
                 )}
             </div>
