@@ -22,7 +22,7 @@ class Tile extends React.Component {
         }
         else {
             this.setState({isAwaiting: true});
-            this.bubbleClick();
+            setTimeout(this.bubbleClick, 300);
         }
     }
 
