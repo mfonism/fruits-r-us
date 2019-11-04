@@ -22,7 +22,7 @@ class Tile extends React.Component {
         }
         else {
             this.setState({isAwaiting: true});
-            setTimeout(this.bubbleClick, 300);
+            setTimeout(this.bubbleClick, 600);
         }
     }
 
@@ -51,7 +51,14 @@ class Tile extends React.Component {
                      this.state.isAwaiting ? ' is-awaiting' : ''}`
                 }
             >
-                {this.props.sharedID}<sub><small>{this.props.uniqueID}</small></sub>
+                <div class="inner">
+                    <div class="face front">
+                        {this.props.sharedID}<sub><small>{this.props.uniqueID}</small></sub>
+                    </div>
+                    <div class="face back">
+                        {'🎨'}
+                    </div>
+                </div>
             </div>
         )
     }
