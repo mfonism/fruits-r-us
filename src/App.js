@@ -53,7 +53,7 @@ class Tile extends React.Component {
             >
                 <div class="inner">
                     <div class="face front">
-                        {this.props.sharedID}<sub><small>{this.props.uniqueID}</small></sub>
+                        {this.props.sharedID}
                     </div>
                     <div class="face back">
                         {'🎨'}
