@@ -73,3 +73,9 @@
     /* background-color: rgb(27, 175, 146); */
     background-color: rgb(0, 0, 0);
 }
+
+.tile .face img {
+    display: block;
+    height: 100%;
+    width: 100%;
+}

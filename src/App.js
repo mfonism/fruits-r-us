@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 
 import './App.css';
+import { fruitImageFileNames } from './_data';
 
 
 class Tile extends React.Component {
@@ -51,11 +52,11 @@ class Tile extends React.Component {
                      this.state.isAwaiting ? ' is-awaiting' : ''}`
                 }
             >
-                <div class="inner">
-                    <div class="face front">
-                        {this.props.sharedID}
+                <div className="inner">
+                    <div className="face front">
+                        <img src={this.props.imgUrl} />
                     </div>
-                    <div class="face back">
+                    <div className="face back">
                         {'🎨'}
                     </div>
                 </div>
@@ -87,8 +88,23 @@ class Board extends React.Component {
                 _.range(1, 8+1 ).flatMap((i) => [i, i])
             )
         );
+        this.state.fruitImageNames = this.getFruitImageNames();
         this.handleTileClick = this.handleTileClick.bind(this);
         this.isGameOver = this.isGameOver.bind(this);
+    }
+
+    getFruitImageNames() {
+        /*
+        Return a list of the names of image files for eight fruits.
+        */
+        return (
+            [
+                "apples", "avocadoes", "bananas", "coconuts", "oranges",
+                "pineapples", "strawberries", "watermelons",
+            ].map(
+                (category => _.sample(fruitImageFileNames[category]))
+            )
+        );
     }
 
     handleTileClick(tileUniqueID, tileSharedID, sendFeedback) {
@@ -144,6 +160,8 @@ class Board extends React.Component {
                         uniqueID={pair[0]}
                         sharedID={pair[1]}
                         onTileClick={this.handleTileClick}
+                        imgUrl={`img/fruits/${
+                            this.state.fruitImageNames[pair[1] - 1]}`}
                         // isAwaiting={this.state.awaitingUniqueID === pair[0]}
                         // isMatched={pair[1] in this.state.matchedSharedIDs}
                     />
