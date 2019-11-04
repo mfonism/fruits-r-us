@@ -14,13 +14,6 @@
     display: grid;
     grid-template-columns: repeat(3, auto) 1fr;
     grid-template-rows: repeat(3, auto) 1fr;
-
-    background: url('./img/board-bg-burlesque.jpg') center no-repeat;
-    background-size: cover;
-}
-
-.board.is-game-over {
-    background-image: url('./img/board-bg-zeke.jpg');
 }
 
 .tile {
@@ -49,8 +42,9 @@
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.69);
 }
 
-.tile.is-matched {
-    visibility: hidden;
+.tile.is-matched .inner {
+    transform: rotateY(180deg);
+    box-shadow: unset;
 }
 
 .tile .face {
@@ -66,6 +60,10 @@
     border: 1px solid rgba(0, 0, 0, 0.32);
     color: black;
     background-color: white;
+}
+
+.tile.is-matched .face.front {
+    border: none;
 }
 
 .tile .face.back {
