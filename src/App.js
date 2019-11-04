@@ -81,6 +81,7 @@ class Board extends React.Component {
             )
         );
         this.handleTileClick = this.handleTileClick.bind(this);
+        this.isGameOver = this.isGameOver.bind(this);
     }
 
     handleTileClick(tileUniqueID, tileSharedID, sendFeedback) {
@@ -113,12 +114,24 @@ class Board extends React.Component {
             });
             previousTileReset("MATCH");
             sendFeedback("MATCH");
+            if (this.isGameOver()) {
+                this.setState({
+                    isGameOver: true,
+                });
+            }
         }
+    }
+
+    isGameOver() {
+        return this.state.matchedSharedIDs.length === 8;
     }
 
     render() {
         return (
-            <div className="board">
+            <div className={
+                `board${
+                 this.state.isGameOver ? ' is-game-over' : ''}`
+            }>
                 {this.state.idPairs.map((pair) =>
                     <Tile
                         uniqueID={pair[0]}

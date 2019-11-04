@@ -42,3 +42,8 @@
     color: rgb(27, 175, 146);
     background-color: rgba(255, 255, 255, 0.96);
 }
+
+.board.is-game-over .tile {
+    background-color: deeppink;
+    color: white;
+}
