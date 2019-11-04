@@ -32,14 +32,14 @@
     width: 19vmin;
     height: 19vmin;
     margin: auto;
-    box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.69);
+    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.69);
     transform-style: preserve-3d;
     transition: all 600 linear;
 }
 
 .tile.is-awaiting .inner {
     transform: rotateY(180deg);
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.69);
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.69);
 }
 
 .tile.is-matched .inner {
