@@ -57,7 +57,7 @@ class Tile extends React.Component {
                         <img src={this.props.imgUrl} />
                     </div>
                     <div className="face back">
-                        {'🎨'}
+                        {'🚀'}
                     </div>
                 </div>
             </div>
