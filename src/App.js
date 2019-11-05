@@ -54,7 +54,10 @@ class Tile extends React.Component {
             >
                 <div className="inner">
                     <div className="face front">
-                        <img src={this.props.imgUrl} />
+                        <img
+                            src={this.props.imgUrl}
+                            alt={this.props.imgUrl.slice(11, -3)} // not working
+                        />
                     </div>
                     <div className="face back">
                         {'🚀'}
