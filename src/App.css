@@ -69,7 +69,7 @@
 .tile .face.back {
     color: rgba(255, 255, 255, 0.96);
     background-color: rgb(27, 175, 146);
-    background-color: khaki;
+    background-color: yellow;
 }
 
 .tile .face img {
