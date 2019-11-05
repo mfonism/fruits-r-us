@@ -2,7 +2,7 @@
 
 This is a ReactJs memory game I built for my two-year-old nephews in my first week of learning ReactJs.
 
-<img alt="a game play in fruits-r-us" src="./public/fruits-r-us.png" />
+<img alt="a game play in fruits-r-us" src="./public/fruits-r-us.png" height=333 />
 
 The interface is intuitive:
 
