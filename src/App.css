@@ -14,6 +14,8 @@
     display: grid;
     grid-template-columns: repeat(3, auto) 1fr;
     grid-template-rows: repeat(3, auto) 1fr;
+    grid-column-gap: 2vmin;
+    grid-row-gap: 2vmin;
 }
 
 .tile {
@@ -29,9 +31,8 @@
 }
 
 .tile .inner {
-    width: 19vmin;
-    height: 19vmin;
-    margin: auto;
+    width: 20vmin;
+    height: 20vmin;
     box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.69);
     transform-style: preserve-3d;
     transition: all 600 linear;
@@ -51,7 +52,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    line-height: 19vmin;
+    line-height: 20vmin;
     backface-visibility: hidden;
 }
 

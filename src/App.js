@@ -84,8 +84,8 @@ class Board extends React.Component {
         */
         this.state.idPairs = _.shuffle(
             _.zip(
-                _.range(1, 16+1),
-                _.range(1, 8+1 ).flatMap((i) => [i, i])
+                _.range(1, 20+1),
+                _.range(1, 10+1 ).flatMap((i) => [i, i])
             )
         );
         this.state.fruitImageNames = this.getFruitImageNames();
@@ -99,8 +99,9 @@ class Board extends React.Component {
         */
         return (
             [
-                "apples", "avocadoes", "bananas", "coconuts", "oranges",
-                "pineapples", "strawberries", "watermelons",
+                "apples", "avocadoes", "bananas", "coconuts", "grapes",
+                "guavas", "oranges", "pineapples", "strawberries",
+                "watermelons",
             ].map(
                 (category => _.sample(fruitImageFileNames[category]))
             )
