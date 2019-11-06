@@ -13,4 +13,4 @@ The interface is intuitive:
 
 ## Motivation
 
-The boys have started identifying fruits (even fruits they have not yet seen physically) on thier play mat. I'm just gamifying the learning process for them.
+The boys have started identifying fruits (even fruits they have not yet seen physically) on their play mat. I'm just gamifying the learning process for them.
